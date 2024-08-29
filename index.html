@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng sinh nhật</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="icon" href="assets/images/favicon.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .modal-dialog-centered {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        @keyframes modalOpen {
+            0% {
+                transform: scale(0.5) rotate(-360deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            animation: modalOpen 0.7s ease-out;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .modal.fade-out .modal-dialog {
+            animation: fadeOut 0.5s ease-out;
+        }
+
+        .main_container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .btn-custom, .btn-custom-birthday {
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .btn-custom:active {
+            background-color: #004494;
+            transform: scale(0.98);
+        }
+
+        .btn-custom-birthday {
+            background-color: #ffcc00;
+            border: 2px solid #ff9900;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background-image: radial-gradient(circle, rgba(255, 204, 0, 0.8), rgba(255, 204, 0, 0.5));
+        }
+
+        .btn-custom-birthday:hover {
+            background-color: #ff9900;
+            border-color: #ff6600;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            transform: scale(1.1);
+        }
+
+        .btn-custom-birthday:active {
+            background-color: #cc6600;
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main_container">
+        <button type="button" class="btn btn-custom-birthday btn-lg" data-toggle="modal" data-target="#modalHoiNgaySinh">
+            Click vào đây đi :3
+        </button>
+    </div>
+
+    <div class="modal fade" id="modalHoiNgaySinh" tabindex="-1" aria-labelledby="modalHoiNgaySinhLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalHoiNgaySinhLabel" style="margin-left: 30% !important;">Chọn 1 món quà sinh nhật</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="figureImage" src="assets/images/love.gif" width="250" alt="Birthday Love">
+                    <div class="form-group mt-3">
+                        <button id="btnWish" class="btn btn-success"  onclick="redirectToLoichuc()">Lời chúc</button>
+                        <button id="btnMoney" class="btn btn-danger" style="margin-left: 10% !important;" onclick="showNoMoneyPopup()">Tiền</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="noMoneyModal" tabindex="-1" aria-labelledby="noMoneyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="assets/images/bubu-bubu-dudu.gif" alt="No Money" width="250">
+                    <h5 class="mt-3">Làm gì có tiền đâu mà chọn lại đi</h5>
+                    <button type="button" class="btn btn-primary mt-3" onclick="showOriginalPopup()">Chọn lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToLoichuc() {
+            window.location.href = "loichuc.html";
+        }
+
+        function showNoMoneyPopup() {
+            $('#modalHoiNgaySinh').modal('hide').on('hidden.bs.modal', function () {
+                $('#noMoneyModal').modal('show');
+            });
+        }
+
+        function showOriginalPopup() {
+            $('#noMoneyModal').modal('hide').on('hidden.bs.modal', function () {
+                $('#modalHoiNgaySinh').modal('show');
+            });
+        }
+    </script>
+</body>
+
+</html>
